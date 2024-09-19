@@ -1,26 +1,39 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <task
+     :tasks = "taskList"
+     @clear_Task="handleClearTask()"
+  />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import task from "./components/Task.vue"
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    task,
+  },
+  data() {
+    return {
+      taskList: [
+        { 
+          id: 1,
+          title: 'Learn Python',
+        },
+        { 
+          id: 2,
+          title: 'Learn Data Structure and Algorithm', 
+        },
+        { 
+          id: 3,
+          title: 'Learn MEVN Stack',
+        },
+      ],
+    }
+  },
+  methods: {
+    handleClearTask() {
+      this.taskList = []
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
