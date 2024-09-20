@@ -2,16 +2,16 @@
   <div class="container">
     <div class="task">
       <div class="title">
-        <h1>To Do List</h1>
+        <h1>My Todo App 📋</h1>
       </div>
       <div class="form">
-        <input type="text" placeholder="Enter new task" v-model="newTask">
+        <input type="text" placeholder="Enter new task" v-model="newTask" @keydown.enter="addTask">
         <button @click="addTask"><i class="fa-solid fa-plus"></i></button>
       </div>
       <div class="taskItems">
-        <ul v-for="task in tasks" :key="task.id">
+        <ul :class="{ completed: task.isCompleted }" @click="checkCompleted(task)" v-for="(task,index) in tasks" :key="index"> 
           <li>{{ task.title }}</li>
-          <button><i class="fa-regular fa-trash-can"></i></button>
+          <button @click="removeTask(index)"><i class="fa-regular fa-trash-can"></i></button>
         </ul>
       </div>
       <button class="clear" @click="clearAll">Clear All</button>
@@ -28,20 +28,29 @@ export default {
   },
   data() {
     return {
-      newTask: ''
+      newTask: '',
+      isCompleted: false,
     }
   },
   methods: {
     addTask() {
       if(this.newTask) {
         this.tasks.push({
-          title: this.newTask
+          title: this.newTask,
+          isCompleted: false,
         });
         this.newTask = '';
       }
     },
+    removeTask(index) {
+      this.tasks.splice(index, 1);
+    },
     clearAll() { 
       this.$emit("clear_Task")
+    },
+    checkCompleted(task) {
+      task.isCompleted = !task.isCompleted;
+      console.log(task.isCompleted);
     }
   }
 }
@@ -56,9 +65,10 @@ export default {
 .task {
   width: 400px;
   height: 400px;
-  background-color: #f5f5f5;
+  background-color:white;
   border-radius: 10px;
   padding:30px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 h1 {
   font-size:22px;
@@ -75,8 +85,8 @@ h1 {
   padding: 15px;
   border-radius:10px;
   border: 1px solid transparent;
-  background-color:#f5f5f5;
   transition: border-color 0.3s ease;
+  background-color: #f5f5f5;
 }
 .form input:focus {
   border-color:#4ec5c1;
@@ -100,8 +110,11 @@ ul {
   justify-content: space-between;
   margin-top:20px;
 }
+ul.completed {
+  text-decoration: line-through;
+}
 ul button {
-  background-color:#f5f5f5;
+  background:none;
   cursor:pointer;
   border:none;
   outline:none;
@@ -115,5 +128,6 @@ ul button {
   background-color:#4ec5c1;
   border-radius:10px;
   cursor: pointer;
+  font-size:15px;
 }
 </style>
