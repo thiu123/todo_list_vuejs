@@ -1,0 +1,23 @@
+[33mcommit 2bd2a95cad1e7244153fa2f4eff3a2d6972fd94b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: Hieu <hieu@gmail.com>
+Date:   Fri Sep 20 19:36:54 2024 +0700
+
+    save task in local storage and edit css
+
+[33mcommit 14f2dfecae8b62f0bb7076ff7be2d3e41b45ea37[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Hieu <hieu@gmail.com>
+Date:   Fri Sep 20 15:53:14 2024 +0700
+
+    done add, remove each task, remove all logic
+
+[33mcommit c7d9fe1d241756b5da2103262531272e39042320[m
+Author: Hieu <hieu@gmail.com>
+Date:   Thu Sep 19 23:16:12 2024 +0700
+
+    css todo list and create add task, remove all task logic
+
+[33mcommit 9c84bd93e2fa4d630fd095e14d78bf85abb787cc[m
+Author: Hieu <hieu@gmail.com>
+Date:   Thu Sep 19 14:24:23 2024 +0700
+
+    init
