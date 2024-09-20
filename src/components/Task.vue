@@ -40,18 +40,25 @@ export default {
           isCompleted: false,
         });
         this.newTask = '';
+        this.saveTasksLocalStorage();
       }
     },
     removeTask(index) {
       this.tasks.splice(index, 1);
+      this.saveTasksLocalStorage();
     },
     clearAll() { 
       this.$emit("clear_Task")
+      this.saveTasksLocalStorage();
     },
     checkCompleted(task) {
       task.isCompleted = !task.isCompleted;
       console.log(task.isCompleted);
-    }
+      this.saveTasksLocalStorage();
+    },
+    saveTasksLocalStorage() {
+      this.$emit("save_Task")
+    },
   }
 }
 </script>
@@ -103,6 +110,8 @@ h1 {
 }
 .taskItems {
   padding: 0 10px;
+  max-height: 200px;
+  overflow-y: auto;
 }
 ul {
   list-style: none;

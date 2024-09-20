@@ -2,6 +2,7 @@
   <task
      :tasks = "taskList"
      @clear_Task="handleClearTask()"
+     @save_Task="handleSaveTask()"
   />
 </template>
 
@@ -36,7 +37,17 @@ export default {
   methods: {
     handleClearTask() {
       this.taskList = []
-    }
-  }
+      this.handleSaveTask();
+    },
+    handleSaveTask() {
+      localStorage.setItem('taskList', JSON.stringify(this.taskList));
+    },
+  },
+  mounted() {
+    const getTasks = localStorage.getItem('taskList');
+      if(getTasks) {
+        this.taskList = JSON.parse(getTasks);
+      }
+    },
 }
 </script>
